@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model MovieTicketsAdminapplication.Models.Order
+
+<style>
+    body {
+      padding: 2rem 0rem;
+    }
+
+    .card-img {
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .card-title {
+      margin-bottom: 0.3rem;
+    }
+
+    .cat {
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .fa-users {
+      margin-left: 1rem;
+    }
+
+    .card-footer {
+      font-size: 0.8rem;
+}
+</style>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <a class="btn btn-primary btn-sm">Order For: @Model.User.Name</a>
+        </div>
+    </div>
+    <div class="row mb-3">
+        @for (int i = 0; i<Model.MovieInOrders.Count; i++)
+        {
+            var element = Model.MovieInOrders.ElementAt(i).Movie;
+            if (i % 2 == 0)
+            {
+                @:<div class="row mb-3">
+            }
+
+            <div class="col-md-6">
+              <div class="card mb-2">
+                <img class="card-img" src="@element.Image" alt="Movie Image">
+                <div class="card-body">
+                  <h4 class="card-title">@element.Name</h4>
+                  <p class="card-text">@element.Description</p>
+                  <p class="card-text text-right text-danger fs-6"><i class="bi bi-tag">Price: @element.TicketPrice ДЕН</i></p>
+                </div>
+              </div>
+            </div>
+
+            if (i % 2 == 1)
+            {
+                @:</div>
+            }
+        }
+	</div>
+</div>
